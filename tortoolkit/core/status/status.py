@@ -80,8 +80,8 @@ class QBTask(Status):
         msg += "<b>🧲 Seeders:</b> <code>{}</code> & <b>Peers:</b> <code>{}</code>\n".format(
             self._torrent.num_seeds,self._torrent.num_leechs
             )
-        msg += "⚙️ <code>qBittorrent</code>"
-        msg += "🔻 <code>{}</code> | 🔺 <code>{}</code>\n".format(
+        msg += "⚙️ <code>qBittorrent</code>\n"
+        msg += "🔻 <code>{}</code> | 🔺 <code>{}</code>".format(
             human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
             human_readable_bytes(self._torrent.upspeed,postfix="/s")
             )
@@ -236,8 +236,8 @@ class ARTask(Status):
         msg += "<b>🔗 Connection:</b> <code>{}</code>\n".format(
             self._dl_file.connections
             )
-        msg += "<b>⚙️ <code>Aria2 For DirectLinks</code>"
-        msg += "🔻 <code>{}</code> | 🔺 <code>{}</code>\n".format(
+        msg += "<b>⚙️ <code>Aria2 For DirectLinks</code>\n"
+        msg += "🔻 <code>{}</code> | 🔺 <code>{}</code>".format(
             self._dl_file.download_speed_string(),
             self._dl_file.upload_speed_string()
             )
