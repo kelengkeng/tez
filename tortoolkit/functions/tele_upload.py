@@ -263,7 +263,7 @@ async def upload_a_file(path,message,force_edit,database=None,thumb_path=None,us
     if not force_edit:        
         data = "upcancel {} {} {}".format(message.chat_id,message.id,user_msg.sender_id)
         buts = [KeyboardButtonCallback("Cancel upload.",data.encode("UTF-8"))]
-        msg = await message.reply("💾 `{}`".format(file_name),buttons=buts)
+        msg = await message.reply("💾 <code>{}</code>".format(file_name),buttons=buts)
 
     else:
         msg = message
@@ -480,7 +480,7 @@ async def upload_single_file(path, message, force_edit,database=None,thumb_image
             data = "upcancel {} {} {}".format(message.chat.id,message.message_id,user_msg.sender_id)
             markup = InlineKeyboardMarkup([[InlineKeyboardButton("Cancel Upload", callback_data=data.encode("UTF-8"))]])
             message_for_progress_display = await message.reply_text(
-                "<i>🔼 Starting upload...</i>\n💾 `{}`".format(os.path.basename(path)),
+                "<code>🔼 Starting upload...</code>\n💾 <code>{}</code>".format(os.path.basename(path)),
                 reply_markup=markup
             )
 
