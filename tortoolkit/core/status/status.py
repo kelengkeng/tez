@@ -66,7 +66,7 @@ class QBTask(Status):
         msg = "💾 <code>{}</code>\n".format(
             self._torrent.name
             )
-        msg += "🌀 <code>{} {}%</code>\n".format(
+        msg += "🌀 <code>[{}] {}%</code>\n".format(
             self.progress_bar(self._torrent.progress),
             round(self._torrent.progress*100,2)
             )
@@ -222,7 +222,7 @@ class ARTask(Status):
         msg = "💾 <code>{}</code>\n".format(
             downloading_dir_name
             )
-        msg += "🌀 <code>{} {}%</code>\n".format(
+        msg += "🌀 <code>[{}] {}%</code>\n".format(
             self.progress_bar(self._dl_file.progress/100),
             round(self._dl_file.progress,2)
             )
