@@ -225,23 +225,23 @@ def add_handlers(bot: TelegramClient):
 
 async def handle_leech_command(e):
     if not e.is_reply:
-        await e.reply("Reply to a link or magnet")
+        await e.reply("Reply to a link or magnet!")
     else:
         rclone = False
         tsp = time.time()
-        buts = [[KeyboardButtonCallback("To Telegram",data=f"leechselect tg {tsp}")]]
+        buts = [[KeyboardButtonCallback("⚡️ To Telegram",data=f"leechselect tg {tsp}")]]
         if await get_config() is not None:
             buts.append(
-                [KeyboardButtonCallback("To Drive",data=f"leechselect drive {tsp}")]
+                [KeyboardButtonCallback("☁️ To Drive",data=f"leechselect drive {tsp}")]
             )
         # tsp is used to split the callbacks so that each download has its own callback
         # cuz at any time there are 10-20 callbacks linked for leeching XD
            
         buts.append(
-                [KeyboardButtonCallback("Upload in a ZIP.[Toggle]", data=f"leechzip toggle {tsp}")]
+                [KeyboardButtonCallback("🔐 Upload in a ZIP.[Toggle]", data=f"leechzip toggle {tsp}")]
         )
         buts.append(
-                [KeyboardButtonCallback("Extract from Archive.[Toggle]", data=f"leechzipex toggleex {tsp}")]
+                [KeyboardButtonCallback("🔓 Extract from Archive.[Toggle]", data=f"leechzipex toggleex {tsp}")]
         )
         
         conf_mes = await e.reply(f"First click if you want to zip the contents or extract as an archive (only one will work at a time) then...\n\n<b>Choose where to upload your files:-</b>\nThe files will be uploaded to default destination: <b>{get_val('DEFAULT_TIMEOUT')}</b> after 60 sec of no action by user.</u>\n\n<b>Supported archives to extract:</b>\nzip, 7z, tar, gzip2, iso, wim, rar, tar.gz, tar.bz2",parse_mode="html",buttons=buts)
@@ -367,7 +367,7 @@ async def get_leech_choice_callback(e,o_sender,lis,ts):
             await e.answer("It will not be extracted.", alert=True)
             lis[1] = False 
         else:
-            await e.answer("If it is a Archive it will be extracted. Further in you can set password to extract the ZIP.", alert=True)
+            await e.answer("If it is a archive it will be extracted. Further in you can set password to extract the ZIP.", alert=True)
             lis[1] = True
     else:
         lis[1] = data[1]
@@ -427,7 +427,7 @@ async def handle_settings_cb(e):
     if await is_admin(e.client,e.sender_id,e.chat_id):
         await handle_setting_callback(e)
     else:
-        await e.answer("⚠️ WARN ⚠️ Dont Touch Admin Settings.",alert=True)
+        await e.answer("⚠️ WARN ⚠️ Dont touch admin settings!",alert=True)
 
 async def handle_upcancel_cb(e):
     db = upload_db
@@ -443,7 +443,7 @@ async def handle_upcancel_cb(e):
         db.cancel_download(data[1],data[2])
         await e.answer("UPLOAD CANCELED IN ADMIN MODE XD ;)",alert=True)
     else:
-        await e.answer("Can't Cancel others upload 😡",alert=True)
+        await e.answer("Can't cancel others upload 😡",alert=True)
 
 
 async def callback_handler_canc(e):
@@ -486,7 +486,7 @@ async def callback_handler_canc(e):
         await cancel_torrent(hashid, is_aria, is_mega)
         await e.answer("Leech has been canceled in ADMIN MODE XD ;)",alert=True)
     else:
-        await e.answer("Can't Cancel others leech 😡", alert=True)
+        await e.answer("Can't cancel others leech 😡", alert=True)
 
 
 async def handle_exec_message_f(e):
@@ -543,9 +543,9 @@ async def handle_pincode_cb(e):
         db = tor_db
         passw = db.get_password(data[1])
         if isinstance(passw,bool):
-            await e.answer("torrent expired download has been started now.")
+            await e.answer("Torrent expired download has been started now.")
         else:
-            await e.answer(f"Your Pincode is {passw}",alert=True)
+            await e.answer(f"Your pincode is {passw}",alert=True)
 
         
     else:
@@ -595,7 +595,7 @@ async def set_password_zip(message):
             await message.reply(f"Cannot update the password this is not your download.")
 
 async def start_handler(event):
-    msg = "Hello This is TorToolkitX running on heroku an instance of <a href='https://github.com/XcodersHub/TorToolkitX'>This Repo</a>. Try the repo for yourself and dont forget to put a STAR and fork."
+    msg = "Hello! This is TorToolkitX running on Heroku."
     await event.reply(msg, parse_mode="html")
 
 def progress_bar(percentage):
@@ -688,26 +688,26 @@ async def handle_server_command(message):
 
     if callbk:
         msg = (
-            f"<b>BOT UPTIME:-</b> {diff}\n\n"
-            "<b>CPU STATS:-</b>\n"
-            f"Cores: {cores} Logical: {lcores}\n"
-            f"CPU Frequency: {freqcurrent}  Mhz Max: {freqmax}\n"
-            f"CPU Utilization: {cpupercent}%\n"
+            f"<b>BOT UPTIME:</b> <code>{diff}</code>\n\n"
+            "<b>CPU STATS:</b>\n"
+            f"Cores: <code>{cores}</code> Logical: <code>{lcores}</code>\n"
+            f"CPU Frequency: <code>{freqcurrent}Mhz</code>"
+            f"CPU Utilization: <code>{cpupercent}%</code>\n"
             "\n"
-            "<b>STORAGE STATS:-</b>\n"
-            f"Total: {totaldsk}\n"
-            f"Used: {useddsk}\n"
-            f"Free: {freedsk}\n"
+            "<b>STORAGE STATS:</b>\n"
+            f"Total: <code>{totaldsk}</code>\n"
+            f"Used: <code>{useddsk}</code>\n"
+            f"Free: <code>{freedsk}</code>\n"
             "\n"
-            "<b>MEMORY STATS:-</b>\n"
-            f"Available: {memavailable}\n"
-            f"Total: {memtotal}\n"
-            f"Usage: {mempercent}%\n"
-            f"Free: {memfree}\n"
+            "<b>MEMORY STATS:</b>\n"
+            f"Available: <code>{memavailable}</code>\n"
+            f"Total: <code>{memtotal}</code>\n"
+            f"Usage: <code>{mempercent}%</code>\n"
+            f"Free: <code>{memfree}</code>\n"
             "\n"
             "<b>TRANSFER INFO:</b>\n"
-            f"Download: {dlb}\n"
-            f"Upload: {upb}\n"
+            f"Download: <code>{dlb}</code>\n"
+            f"Upload: <code>{upb}</code>\n"
         )
         await message.edit(msg, parse_mode="html", buttons=None)
     else:
@@ -718,14 +718,14 @@ async def handle_server_command(message):
 
         
         msg = (
-            f"<b>BOT UPTIME:-</b> {diff}\n\n"
-            f"CPU Utilization: {progress_bar(cpupercent)} - {cpupercent}%\n\n"
-            f"Storage used:- {progress_bar(storage_percent)} - {storage_percent}%\n"
-            f"Total: {totaldsk} Free: {freedsk}\n\n"
-            f"Memory used:- {progress_bar(mempercent)} - {mempercent}%\n"
-            f"Total: {memtotal} Free: {memfree}\n\n"
-            f"Transfer Download:- {dlb}\n"
-            f"Transfer Upload:- {upb}\n"
+            f"<b>BOT UPTIME:</b> <code>{diff}</code>\n\n"
+            f"<b>CPU Utilization:</b> <code>{progress_bar(cpupercent)} {cpupercent}%</code>\n\n"
+            f"<b>Storage used:</b> {progress_bar(storage_percent)} {storage_percent}%\n"
+            f"<b>Total:</b> <code>{totaldsk}</code> <b>Free:</b> <code>{freedsk}</code>\n\n"
+            f"<b>Memory used:</b> <code>{progress_bar(mempercent)} {mempercent}%</code>\n"
+            f"<b>Total:</b> <code>{memtotal}</code> <b>Free:</b> <code>{memfree}</code>\n\n"
+            f"<b>Download:</b> <code>{dlb}</code>\n"
+            f"<b>Upload:</b> <code>{upb}</code>\n"
         )
         await message.reply(msg, parse_mode="html", buttons=[[KeyboardButtonCallback("Get detailed stats.","fullserver")]])
 
