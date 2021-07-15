@@ -94,7 +94,7 @@ class QBTask(Status):
             return"💾 <code>{}</code>\nℹ️ <code>Waiting for connection</code>".format(self._torrent.name)
         #meta stage
         elif self._torrent.state == "metaDL":
-            return  "Getting metadata for <code>{} - {}</code>".format(self._torrent.name,datetime.now().strftime("%H:%M:%S"))
+            return  "<code>[METADATA] {}</code> - <code>{}</code>".format(self._torrent.name,datetime.now().strftime("%H:%M:%S"))
         elif self._torrent.state == "downloading" or self._torrent.state.lower().endswith("dl"):
             # kept for past ref
             return None
