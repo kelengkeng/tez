@@ -691,7 +691,7 @@ async def handle_server_command(message):
             f"<b>BOT UPTIME:</b> <code>{diff}</code>\n\n"
             "<b>CPU STATS:</b>\n"
             f"Cores: <code>{cores}</code> Logical: <code>{lcores}</code>\n"
-            f"CPU Frequency: <code>{freqcurrent}Mhz</code>"
+            f"CPU Frequency: <code>{freqcurrent}Mhz</code>\n"
             f"CPU Utilization: <code>{cpupercent}%</code>\n"
             "\n"
             "<b>STORAGE STATS:</b>\n"
@@ -720,7 +720,7 @@ async def handle_server_command(message):
         msg = (
             f"<b>BOT UPTIME:</b> <code>{diff}</code>\n\n"
             f"<b>CPU Utilization:</b> <code>{progress_bar(cpupercent)} {cpupercent}%</code>\n\n"
-            f"<b>Storage used:</b> {progress_bar(storage_percent)} {storage_percent}%\n"
+            f"<b>Storage used:</b> <code>{progress_bar(storage_percent)} {storage_percent}%</code>\n"
             f"<b>Total:</b> <code>{totaldsk}</code> <b>Free:</b> <code>{freedsk}</code>\n\n"
             f"<b>Memory used:</b> <code>{progress_bar(mempercent)} {mempercent}%</code>\n"
             f"<b>Total:</b> <code>{memtotal}</code> <b>Free:</b> <code>{memfree}</code>\n\n"
