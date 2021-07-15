@@ -144,8 +144,8 @@ class RCUploadTask(Status):
         nstr = nstr.strip()
         nstr = nstr.split(",")
         prg = nstr[1].strip("% ")
-        prg = "🌀 <code>{} {}%</code>".format(self.progress_bar(prg),prg)
-        progress = "📦 <code>{}</code> \n<code>{}</code> \n⚡️ <code>{}</code> \n⏱ </code>{}</code> \n⚙️ <code>RCLONE</code>".format(nstr[0],prg,nstr[2],nstr[3].replace("ETA",""))
+        prg = "🌀 <code>[{}] {}%</code>".format(self.progress_bar(prg),prg)
+        progress = "📦 <code>{}</code>\n<code>{}</code>\n⚡️ <code>{}</code>\n⏱ </code>{}</code>\n⚙️ <code>RCLONE</code>".format(nstr[0],prg,nstr[2],nstr[3].replace("ETA",""))
         return progress
 
     def progress_bar(self,percentage):
