@@ -63,38 +63,38 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-        msg = "<b>Downloading:</b> <code>{}</code>\n".format(
+        msg = "💾 <code>{}</code>\n".format(
             self._torrent.name
             )
-        msg += "<b>Down:</b> {} <b>Up:</b> {}\n".format(
-            human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
-            human_readable_bytes(self._torrent.upspeed,postfix="/s")
-            )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
+        msg += "🌀 <code>{} {}%</code>\n".format(
             self.progress_bar(self._torrent.progress),
             round(self._torrent.progress*100,2)
             )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
+        msg += "📦 <code>{}</code> of <code>{}</code>\n".format(
             human_readable_bytes(self._torrent.downloaded),
             human_readable_bytes(self._torrent.total_size)
             )
-        msg += "<b>ETA:</b> <b>{}</b>\n".format(
+        msg += "⏱ <code>{}</code>\n".format(
             human_readable_timedelta(self._torrent.eta)
             )
-        msg += "<b>S:</b>{} <b>L:</b>{}\n".format(
+        msg += "<b>🧲 Seeders:</b> <code>{}</code> & <b>Peers:</b> <code>{}</code>\n".format(
             self._torrent.num_seeds,self._torrent.num_leechs
             )
-        msg += "<b>Using engine:</b> <code>qBittorrent</code>"
+        msg += "⚙️ <code>qBittorrent</code>"
+        msg += "🔻 <code>{}</code> | 🔺 <code>{}</code>\n".format(
+            human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
+            human_readable_bytes(self._torrent.upspeed,postfix="/s")
+            )
 
         return msg
 
     async def get_state(self):
         #stalled
         if self._torrent.state == "stalledDL":
-            return"Torrent <code>{}</code> is stalled(waiting for connection) temporarily.".format(self._torrent.name)
+            return"💾 <code>{}</code>\nℹ️ <code>Waiting for connection</code>".format(self._torrent.name)
         #meta stage
         elif self._torrent.state == "metaDL":
-            return  "Getting metadata for {} - {}".format(self._torrent.name,datetime.now().strftime("%H:%M:%S"))
+            return  "Getting metadata for <code>{} - {}</code>".format(self._torrent.name,datetime.now().strftime("%H:%M:%S"))
         elif self._torrent.state == "downloading" or self._torrent.state.lower().endswith("dl"):
             # kept for past ref
             return None
@@ -219,28 +219,28 @@ class ARTask(Status):
         except:
             pass
 
-        msg = "<b>Downloading:</b> <code>{}</code>\n".format(
+        msg = "💾 <code>{}</code>\n".format(
             downloading_dir_name
             )
-        msg += "<b>Down:</b> {} <b>Up:</b> {}\n".format(
-            self._dl_file.download_speed_string(),
-            self._dl_file.upload_speed_string()
-            )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
+        msg += "🌀 <code>{} {}%</code>\n".format(
             self.progress_bar(self._dl_file.progress/100),
             round(self._dl_file.progress,2)
             )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
+        msg += "📦 <code>{}</code> of <code>{}</code>\n".format(
             human_readable_bytes(self._dl_file.completed_length),
             human_readable_bytes(self._dl_file.total_length)
             )
-        msg += "<b>ETA:</b> <b>{}</b>\n".format(
+        msg += "⏱ <code>{}</cpde>\n".format(
             self._dl_file.eta_string()
             )
-        msg += "<b>Conns:</b>{} <b>\n".format(
+        msg += "<b>🔗 Connection:</b> <code>{}</code>\n".format(
             self._dl_file.connections
             )
-        msg += "<b>Using engine:</b> <code>Aria2 For DirectLinks</code>"
+        msg += "<b>⚙️ <code>Aria2 For DirectLinks</code>"
+        msg += "🔻 <code>{}</code> | 🔺 <code>{}</code>\n".format(
+            self._dl_file.download_speed_string(),
+            self._dl_file.upload_speed_string()
+            )
 
         return msg
 
