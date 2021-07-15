@@ -23,7 +23,7 @@ no = "❌"
 yes = "✅"
 # Central object is not used its Acknowledged 
 tordb = TorToolkitDB()
-header =  '<b>TorToolKitX by <a href="https://github.com/XcodersHub/TorToolkitX">XcodersHub</a></b>\n<u>ADMIN SETTINGS MENU - Beta v1</u>'
+header =  '<b>TorToolKitX Bot</b>\nADMIN SETTINGS MENU - Beta v1'
 async def handle_setting_callback(e):
     db = tordb
     session_id,_ = db.get_variable("SETTING_AUTH_CODE")
@@ -35,7 +35,7 @@ async def handle_setting_callback(e):
     
     if cmd[-1] != session_id:
         print("Session id",session_id," - - ",cmd[-1])
-        await e.answer("This Setting menu is expired.",alert=True)
+        await e.answer("This setting menu is expired.",alert=True)
         await e.delete()
         return
     if cmd[1] == "fdocs":
