@@ -463,11 +463,11 @@ async def print_files(e,files,thash=None, path = None, size=None):
         size = calculate_size(path)
         transfer[0] += size
         size = human_readable_bytes(size)
-        msg += f"<b>Uploaded size:</b> {str(size)}\n\n"
+        msg += f"<b>📦 Size:</b> {str(size)}\n\n"
     elif size is not None:
         transfer[0] += size
         size = human_readable_bytes(size)
-        msg += f"<b>Uploaded size:</b> {str(size)}\n\n"
+        msg += f"<b>📦 Size:</b> {str(size)}\n\n"
 
 
     if len(files) == 0:
