@@ -230,7 +230,7 @@ class ARTask(Status):
             human_readable_bytes(self._dl_file.completed_length),
             human_readable_bytes(self._dl_file.total_length)
             )
-        msg += "⏱ <code>{}</cpde>\n".format(
+        msg += "⏱ <code>{}</code>\n".format(
             self._dl_file.eta_string()
             )
         msg += "<b>🔗 Connection:</b> <code>{}</code>\n".format(
