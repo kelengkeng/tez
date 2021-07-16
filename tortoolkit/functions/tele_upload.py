@@ -109,11 +109,11 @@ async def upload_handel(path,message,from_uid,files_dict,job_id=0,force_edit=Fal
                 ftype = "unknown"
             
             if ftype == "video":    
-                todel = await message.reply("<code>Splitting...</code>") 
+                todel = await message.reply("`Splitting...`") 
                 split_dir = await vids_helpers.split_file(path,get_val("TG_UP_LIMIT"))
                 await todel.delete()
             else:
-                todel = await message.reply("<code>Splitting...</code>") 
+                todel = await message.reply("`Splitting...`") 
                 split_dir = await zip7_utils.split_in_zip(path,get_val("TG_UP_LIMIT"))
                 await todel.delete()
             
@@ -263,7 +263,7 @@ async def upload_a_file(path,message,force_edit,database=None,thumb_path=None,us
     if not force_edit:        
         data = "upcancel {} {} {}".format(message.chat_id,message.id,user_msg.sender_id)
         buts = [KeyboardButtonCallback("Cancel upload.",data.encode("UTF-8"))]
-        msg = await message.reply("💾 <code>{}</code>".format(file_name),buttons=buts)
+        msg = await message.reply("💾 `{}`".format(file_name),buttons=buts)
 
     else:
         msg = message
@@ -271,7 +271,7 @@ async def upload_a_file(path,message,force_edit,database=None,thumb_path=None,us
     uploader_id = None
     if queue is not None:
         torlog.info(f"Waiting for the worker here for {file_name}")
-        msg = await msg.edit(f"{msg.text}\n⌛️ Waiting for a uploaders to get free... ")
+        msg = await msg.edit(f"{msg.text}\n`⌛️ Waiting for a uploaders to get free...`")
         uploader_id = await queue.get()
         torlog.info(f"Waiting over for the worker here for {file_name} aquired worker {uploader_id}")
 
@@ -347,7 +347,7 @@ async def upload_a_file(path,message,force_edit,database=None,thumb_path=None,us
                         attributes=attrs
                     )
                 except Exception:
-                    torlog.error("Error: <code>{}</code>".format(traceback.format_exc()))
+                    torlog.error("Error: `{}`".format(traceback.format_exc()))
             elif ftype == "audio" and not force_docs:
                 # not sure about this if
                 attrs, _ = get_attributes(opath)
@@ -480,13 +480,13 @@ async def upload_single_file(path, message, force_edit,database=None,thumb_image
             data = "upcancel {} {} {}".format(message.chat.id,message.message_id,user_msg.sender_id)
             markup = InlineKeyboardMarkup([[InlineKeyboardButton("Cancel Upload", callback_data=data.encode("UTF-8"))]])
             message_for_progress_display = await message.reply_text(
-                "<code>🔼 Starting upload...</code>\n💾 <code>{}</code>".format(os.path.basename(path)),
+                "`🔼 Starting upload...`\n💾 `{}`".format(os.path.basename(path)),
                 reply_markup=markup
             )
 
             if queue is not None:
                 torlog.info(f"Waiting for the worker here for {file_name}")
-                message_for_progress_display = await message_for_progress_display.edit(f"{message_for_progress_display.text}\n⌛️ Waiting for a uploaders to get free... ")
+                message_for_progress_display = await message_for_progress_display.edit(f"{message_for_progress_display.text}\n`⌛️ Waiting for a uploaders to get free...`")
                 uploader_id = await queue.get()
                 torlog.info(f"Waiting over for the worker here for {file_name} aquired worker {uploader_id}")
         
